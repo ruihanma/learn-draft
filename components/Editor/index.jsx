@@ -71,12 +71,12 @@ function mediaBlockRenderer(block) {
 }
 
 const Image = props => {
-  return <img src={props.src} />;
+  return <img {...props} />;
 };
 
 const Media = props => {
   const entity = props.contentState.getEntity(props.block.getEntityAt(0));
-  const { src } = entity.getData();
+  const { src, style } = entity.getData();
   const type = entity.getType();
 
   let media,
@@ -84,7 +84,7 @@ const Media = props => {
 
   switch (Type) {
     case "IMAGE":
-      media = <Image src={src} />;
+      media = <Image style={style} src={src} />;
       break;
     case "AUDIO":
       media = <Audio src={src} />;
@@ -266,7 +266,7 @@ export default class EditorComponent extends React.Component {
     const contentStateWithEntity = contentState.createEntity(
       _.upperCase(urlType),
       "IMMUTABLE",
-      { src: urlValue, width: 100 }
+      { src: urlValue, style: { width: 100 } }
     );
     const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
     console.log("entityKey", entityKey);

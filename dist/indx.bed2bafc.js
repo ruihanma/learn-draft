@@ -87487,16 +87487,15 @@ function mediaBlockRenderer(block) {
 }
 
 var Image = function Image(props) {
-  return _react.default.createElement("img", {
-    src: props.src
-  });
+  return _react.default.createElement("img", props);
 };
 
 var Media = function Media(props) {
   var entity = props.contentState.getEntity(props.block.getEntityAt(0));
 
   var _entity$getData = entity.getData(),
-      src = _entity$getData.src;
+      src = _entity$getData.src,
+      style = _entity$getData.style;
 
   var type = entity.getType();
 
@@ -87506,6 +87505,7 @@ var Media = function Media(props) {
   switch (Type) {
     case "IMAGE":
       media = _react.default.createElement(Image, {
+        style: style,
         src: src
       });
       break;
@@ -87725,7 +87725,9 @@ function (_React$Component) {
       var contentState = editorState.getCurrentContent();
       var contentStateWithEntity = contentState.createEntity(_lodash.default.upperCase(urlType), "IMMUTABLE", {
         src: urlValue,
-        width: 100
+        style: {
+          width: 100
+        }
       });
       var entityKey = contentStateWithEntity.getLastCreatedEntityKey();
       console.log("entityKey", entityKey);
