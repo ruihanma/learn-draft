@@ -50,11 +50,13 @@ export default class EditorComponent extends React.Component {
           blockStyles={BLOCK_TYPES}
           onBlockToggle={this.toggleBlockType}
         />
-        <Editor
-          placeholder="Please Text Here"
-          editorState={this.state.editorState}
-          onChange={this.onChange}
-        />
+        <div className="ml-3 mr-3 p-2" style={{ border: `1px solid #333` }}>
+          <Editor
+            placeholder="Please Text Here"
+            editorState={this.state.editorState}
+            onChange={this.onChange}
+          />
+        </div>
       </Fragment>
     );
   }

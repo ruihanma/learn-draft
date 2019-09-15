@@ -67707,11 +67707,16 @@ function (_React$Component) {
         onInlineToggle: this.toggleInlineStyle,
         blockStyles: BLOCK_TYPES,
         onBlockToggle: this.toggleBlockType
-      }), _react.default.createElement(_draftJs.Editor, {
+      }), _react.default.createElement("div", {
+        className: "ml-3 mr-3 p-2",
+        style: {
+          border: "1px solid #333"
+        }
+      }, _react.default.createElement(_draftJs.Editor, {
         placeholder: "Please Text Here",
         editorState: this.state.editorState,
         onChange: this.onChange
-      }));
+      })));
     }
   }, {
     key: "_toggleBlockType",
