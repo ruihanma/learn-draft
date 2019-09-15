@@ -67331,6 +67331,7 @@ function (_React$Component) {
       }
 
       return _react.default.createElement(_button.default, {
+        type: this.props.active ? "primary" : "default",
         className: className,
         onMouseDown: this.onToggle
       }, this.props.label);
@@ -67396,13 +67397,18 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       var inlineStyles = this.state.inlineStyles;
-      var onToggle = this.props.onToggle;
+      var _this$props = this.props,
+          onToggle = _this$props.onToggle,
+          editorState = _this$props.editorState;
+      var currentStyle = editorState.getCurrentInlineStyle(); // console.log("currentStyle.inline", currentStyle);
+
       return _react.default.createElement("div", {
         className: "mb-3"
       }, inlineStyles && inlineStyles.length > 0 && inlineStyles.map(function (cell, si) {
         return _react.default.createElement(_ToolCell.default, {
           onToggle: onToggle,
           key: si,
+          active: currentStyle.has(cell.style),
           label: cell.label,
           style: cell.style
         });
@@ -67469,11 +67475,17 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       var blockStyles = this.state.blockStyles;
-      var onToggle = this.props.onToggle;
+      var _this$props = this.props,
+          onToggle = _this$props.onToggle,
+          editorState = _this$props.editorState;
+      var selection = editorState.getSelection();
+      var blockType = editorState.getCurrentContent().getBlockForKey(selection.getStartKey()).getType(); // console.log("blockType", blockType);
+
       return _react.default.createElement("div", null, blockStyles && blockStyles.length > 0 && blockStyles.map(function (cell, si) {
         return _react.default.createElement(_ToolCell.default, {
           onToggle: onToggle,
           key: si,
+          active: cell.style === blockType,
           label: cell.label,
           style: cell.style
         });
@@ -67545,12 +67557,15 @@ function (_React$Component) {
       var _this$props2 = this.props,
           blockStyles = _this$props2.blockStyles,
           onBlockToggle = _this$props2.onBlockToggle;
+      var editorState = this.props.editorState;
       return _react.default.createElement("div", {
         className: "p-3"
       }, _react.default.createElement(_ToolBarInline.default, {
+        editorState: editorState,
         onToggle: onInlineToggle,
         inlineStyles: inlineStyles
       }), _react.default.createElement(_ToolBarBlock.default, {
+        editorState: editorState,
         onToggle: onBlockToggle,
         blockStyles: blockStyles
       }));

@@ -13,7 +13,13 @@ export default class ToolbarComponent extends React.Component {
 
   render() {
     const { blockStyles } = this.state;
-    const { onToggle } = this.props;
+    const { onToggle, editorState } = this.props;
+    const selection = editorState.getSelection();
+    const blockType = editorState
+      .getCurrentContent()
+      .getBlockForKey(selection.getStartKey())
+      .getType();
+    // console.log("blockType", blockType);
     return (
       <div>
         {blockStyles &&
@@ -23,6 +29,7 @@ export default class ToolbarComponent extends React.Component {
               <ToolCell
                 onToggle={onToggle}
                 key={si}
+                active={cell.style === blockType}
                 label={cell.label}
                 style={cell.style}
               ></ToolCell>

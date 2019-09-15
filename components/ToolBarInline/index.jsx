@@ -13,7 +13,9 @@ export default class ToolbarComponent extends React.Component {
 
   render() {
     const { inlineStyles } = this.state;
-    const { onToggle } = this.props;
+    const { onToggle, editorState } = this.props;
+    const currentStyle = editorState.getCurrentInlineStyle();
+    // console.log("currentStyle.inline", currentStyle);
     return (
       <div className="mb-3">
         {inlineStyles &&
@@ -23,6 +25,7 @@ export default class ToolbarComponent extends React.Component {
               <ToolCell
                 onToggle={onToggle}
                 key={si}
+                active={currentStyle.has(cell.style)}
                 label={cell.label}
                 style={cell.style}
               ></ToolCell>
