@@ -1,5 +1,11 @@
 import React, { Fragment } from "react";
-import { Editor, EditorState, RichUtils, AtomicBlockUtils } from "draft-js";
+import {
+  Editor,
+  EditorState,
+  RichUtils,
+  AtomicBlockUtils,
+  getDefaultKeyBinding
+} from "draft-js";
 
 import Toolbar from "../Toolbar";
 // Style
@@ -36,6 +42,15 @@ const styleMap = {
     padding: 2
   }
 };
+
+function getBlockStyle(block) {
+  switch (block.getType()) {
+    case "blockquote":
+      return "RichEditor-blockquote";
+    default:
+      return null;
+  }
+}
 
 export default class EditorComponent extends React.Component {
   constructor(props) {
@@ -86,8 +101,11 @@ export default class EditorComponent extends React.Component {
         />
         <div className="ml-3 mr-3 p-2" style={{ border: `1px solid #333` }}>
           <Editor
+            blockStyleFn={getBlockStyle}
             placeholder="Please Text Here"
             editorState={this.state.editorState}
+            handleKeyCommand={this.handleKeyCommand}
+            keyBindingFn={this.mapKeyToEditorCommand}
             onChange={this.onChange}
             ref="editor"
             spellCheck={true}

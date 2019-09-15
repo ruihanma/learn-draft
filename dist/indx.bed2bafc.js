@@ -67679,6 +67679,16 @@ var styleMap = {
   }
 };
 
+function getBlockStyle(block) {
+  switch (block.getType()) {
+    case "blockquote":
+      return "RichEditor-blockquote";
+
+    default:
+      return null;
+  }
+}
+
 var EditorComponent =
 /*#__PURE__*/
 function (_React$Component) {
@@ -67741,7 +67751,7 @@ function (_React$Component) {
           return;
         }
 
-      return getDefaultKeyBinding(e);
+      return (0, _draftJs.getDefaultKeyBinding)(e);
     }
   }, {
     key: "render",
@@ -67759,8 +67769,11 @@ function (_React$Component) {
           border: "1px solid #333"
         }
       }, _react.default.createElement(_draftJs.Editor, {
+        blockStyleFn: getBlockStyle,
         placeholder: "Please Text Here",
         editorState: this.state.editorState,
+        handleKeyCommand: this.handleKeyCommand,
+        keyBindingFn: this.mapKeyToEditorCommand,
         onChange: this.onChange,
         ref: "editor",
         spellCheck: true,
