@@ -2468,6 +2468,11 @@ draft-js@^0.11.0:
     immutable "~3.7.4"
     object-assign "^4.1.0"
 
+draftjs-to-html@^0.8.4:
+  version "0.8.4"
+  resolved "https://registry.yarnpkg.com/draftjs-to-html/-/draftjs-to-html-0.8.4.tgz#bda0adc00945db1f1baf0191b34b49b24191f1df"
+  integrity sha512-+4hekxc8dTJvKk6usiEsFX9O1uOD9vLZZOs9ZI3RhTe89yNmtazYII/ILDXfbMPfzNaYfX7Gf3zjRm6UUFxqyg==
+
 duplexer2@~0.1.4:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/duplexer2/-/duplexer2-0.1.4.tgz#8b12dab878c0d69e3e7891051662a32fc6bddcc1"
@@ -3118,6 +3123,11 @@ html-tags@^1.0.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/html-tags/-/html-tags-1.2.0.tgz#c78de65b5663aa597989dd2b7ab49200d7e4db98"
   integrity sha1-x43mW1Zjqll5id0rerSSANfk25g=
+
+html-to-draftjs@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/html-to-draftjs/-/html-to-draftjs-1.4.0.tgz#8a3cbbba5b49d50be8ce85cc08b112d5bf00fc1d"
+  integrity sha1-ijy7ultJ1QvozoXMCLES1b8A/B0=
 
 htmlnano@^0.2.2:
   version "0.2.4"
