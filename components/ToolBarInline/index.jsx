@@ -13,12 +13,20 @@ export default class ToolbarComponent extends React.Component {
 
   render() {
     const { inlineStyles } = this.state;
+    const { onToggle } = this.props;
     return (
       <div>
         {inlineStyles &&
           inlineStyles.length > 0 &&
-          inlineStyles.map((style, si) => {
-            return <ToolCell key={si} label={style.label}></ToolCell>;
+          inlineStyles.map((cell, si) => {
+            return (
+              <ToolCell
+                onToggle={onToggle}
+                key={si}
+                label={cell.label}
+                style={cell.style}
+              ></ToolCell>
+            );
           })}
       </div>
     );

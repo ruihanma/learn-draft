@@ -52750,10 +52750,13 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       var inlineStyles = this.state.inlineStyles;
-      return _react.default.createElement("div", null, inlineStyles && inlineStyles.length > 0 && inlineStyles.map(function (style, si) {
+      var onToggle = this.props.onToggle;
+      return _react.default.createElement("div", null, inlineStyles && inlineStyles.length > 0 && inlineStyles.map(function (cell, si) {
         return _react.default.createElement(_ToolCell.default, {
+          onToggle: onToggle,
           key: si,
-          label: style.label
+          label: cell.label,
+          style: cell.style
         });
       }));
     }
@@ -52818,10 +52821,13 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       var blockStyles = this.state.blockStyles;
-      return _react.default.createElement("div", null, blockStyles && blockStyles.length > 0 && blockStyles.map(function (style, si) {
+      var onToggle = this.props.onToggle;
+      return _react.default.createElement("div", null, blockStyles && blockStyles.length > 0 && blockStyles.map(function (cell, si) {
         return _react.default.createElement(_ToolCell.default, {
+          onToggle: onToggle,
           key: si,
-          label: style.label
+          label: cell.label,
+          style: cell.style
         });
       }));
     }
@@ -52885,10 +52891,18 @@ function (_React$Component) {
   _createClass(ToolbarComponent, [{
     key: "render",
     value: function render() {
+      var _this$props = this.props,
+          inlineStyles = _this$props.inlineStyles,
+          onInlineToggle = _this$props.onInlineToggle;
+      var _this$props2 = this.props,
+          blockStyles = _this$props2.blockStyles,
+          onBlockToggle = _this$props2.onBlockToggle;
       return _react.default.createElement("div", null, _react.default.createElement(_ToolBarInline.default, {
-        inlineStyles: this.props.inlineStyles
+        onToggle: onInlineToggle,
+        inlineStyles: inlineStyles
       }), _react.default.createElement(_ToolBarBlock.default, {
-        blockStyles: this.props.blockStyles
+        onToggle: onBlockToggle,
+        blockStyles: blockStyles
       }));
     }
   }]);
@@ -52927,14 +52941,15 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
+// 行内样式组
 var INLINE_STYLES = [{
   label: "Bold",
   style: "BOLD"
@@ -52950,7 +52965,8 @@ var INLINE_STYLES = [{
 }, {
   label: "test",
   style: "STRIKETHROUGH"
-}];
+}]; // 块类样式组
+
 var BLOCK_TYPES = [{
   label: "H1",
   style: "header-one"
@@ -53004,20 +53020,37 @@ function (_React$Component) {
     _this.state = {
       editorState: _draftJs.EditorState.createEmpty()
     };
+    _this.toggleBlockType = _this._toggleBlockType.bind(_assertThisInitialized(_this));
+    _this.toggleInlineStyle = _this._toggleInlineStyle.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(EditorComponent, [{
     key: "render",
     value: function render() {
+      var editorState = this.state.editorState;
       return _react.default.createElement(_react.Fragment, null, _react.default.createElement(_Toolbar.default, {
+        editorState: editorState,
         inlineStyles: INLINE_STYLES,
-        blockStyles: BLOCK_TYPES
+        onInlineToggle: this.toggleInlineStyle,
+        blockStyles: BLOCK_TYPES,
+        onBlockToggle: this.toggleBlockType
       }), _react.default.createElement(_draftJs.Editor, {
         placeholder: "Please Text Here",
         editorState: this.state.editorState,
         onChange: this.onChange
       }));
+    }
+  }, {
+    key: "_toggleBlockType",
+    value: function _toggleBlockType(blockType) {
+      this.onChange(_draftJs.RichUtils.toggleBlockType(this.state.editorState, blockType));
+    }
+  }, {
+    key: "_toggleInlineStyle",
+    value: function _toggleInlineStyle(inlineStyle) {
+      console.log("inlineStyle", inlineStyle);
+      this.onChange(_draftJs.RichUtils.toggleInlineStyle(this.state.editorState, inlineStyle));
     }
   }]);
 

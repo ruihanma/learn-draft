@@ -11,10 +11,12 @@ export default class ToolbarComponent extends React.Component {
   }
 
   render() {
+    const { inlineStyles, onInlineToggle } = this.props;
+    const { blockStyles, onBlockToggle } = this.props;
     return (
       <div>
-        <ToolBarInline inlineStyles={this.props.inlineStyles} />
-        <ToolBarBlock blockStyles={this.props.blockStyles} />
+        <ToolBarInline onToggle={onInlineToggle} inlineStyles={inlineStyles} />
+        <ToolBarBlock onToggle={onBlockToggle} blockStyles={blockStyles} />
       </div>
     );
   }

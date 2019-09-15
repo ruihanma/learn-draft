@@ -1,8 +1,9 @@
 import React, { Fragment } from "react";
-import { Editor, EditorState } from "draft-js";
+import { Editor, EditorState, RichUtils } from "draft-js";
 
 import Toolbar from "../Toolbar";
 
+// 行内样式组
 const INLINE_STYLES = [
   { label: "Bold", style: "BOLD" },
   { label: "Italic", style: "ITALIC" },
@@ -11,6 +12,7 @@ const INLINE_STYLES = [
   { label: "test", style: "STRIKETHROUGH" }
 ];
 
+// 块类样式组
 const BLOCK_TYPES = [
   { label: "H1", style: "header-one" },
   { label: "H2", style: "header-two" },
@@ -30,18 +32,39 @@ export default class EditorComponent extends React.Component {
     this.state = {
       editorState: EditorState.createEmpty()
     };
+
+    this.toggleBlockType = this._toggleBlockType.bind(this);
+    this.toggleInlineStyle = this._toggleInlineStyle.bind(this);
   }
 
   render() {
+    const { editorState } = this.state;
     return (
       <Fragment>
-        <Toolbar inlineStyles={INLINE_STYLES} blockStyles={BLOCK_TYPES} />
+        <Toolbar
+          editorState={editorState}
+          inlineStyles={INLINE_STYLES}
+          onInlineToggle={this.toggleInlineStyle}
+          blockStyles={BLOCK_TYPES}
+          onBlockToggle={this.toggleBlockType}
+        />
         <Editor
           placeholder="Please Text Here"
           editorState={this.state.editorState}
           onChange={this.onChange}
         />
       </Fragment>
+    );
+  }
+
+  _toggleBlockType(blockType) {
+    this.onChange(RichUtils.toggleBlockType(this.state.editorState, blockType));
+  }
+
+  _toggleInlineStyle(inlineStyle) {
+    console.log("inlineStyle", inlineStyle);
+    this.onChange(
+      RichUtils.toggleInlineStyle(this.state.editorState, inlineStyle)
     );
   }
 
