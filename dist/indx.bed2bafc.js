@@ -52624,7 +52624,7 @@ var DraftPublic = {
   getVisibleSelectionRect: getVisibleSelectionRect
 };
 module.exports = DraftPublic;
-},{"./AtomicBlockUtils":"node_modules/draft-js/lib/AtomicBlockUtils.js","./BlockMapBuilder":"node_modules/draft-js/lib/BlockMapBuilder.js","./CharacterMetadata":"node_modules/draft-js/lib/CharacterMetadata.js","./CompositeDraftDecorator":"node_modules/draft-js/lib/CompositeDraftDecorator.js","./ContentBlock":"node_modules/draft-js/lib/ContentBlock.js","./ContentState":"node_modules/draft-js/lib/ContentState.js","./DefaultDraftBlockRenderMap":"node_modules/draft-js/lib/DefaultDraftBlockRenderMap.js","./DefaultDraftInlineStyle":"node_modules/draft-js/lib/DefaultDraftInlineStyle.js","./DraftEditor.react":"node_modules/draft-js/lib/DraftEditor.react.js","./DraftEditorBlock.react":"node_modules/draft-js/lib/DraftEditorBlock.react.js","./DraftEntity":"node_modules/draft-js/lib/DraftEntity.js","./DraftModifier":"node_modules/draft-js/lib/DraftModifier.js","./DraftEntityInstance":"node_modules/draft-js/lib/DraftEntityInstance.js","./EditorState":"node_modules/draft-js/lib/EditorState.js","./KeyBindingUtil":"node_modules/draft-js/lib/KeyBindingUtil.js","./RawDraftContentState":"node_modules/draft-js/lib/RawDraftContentState.js","./RichTextEditorUtil":"node_modules/draft-js/lib/RichTextEditorUtil.js","./SelectionState":"node_modules/draft-js/lib/SelectionState.js","./convertFromDraftStateToRaw":"node_modules/draft-js/lib/convertFromDraftStateToRaw.js","./convertFromRawToDraftState":"node_modules/draft-js/lib/convertFromRawToDraftState.js","./generateRandomKey":"node_modules/draft-js/lib/generateRandomKey.js","./getDefaultKeyBinding":"node_modules/draft-js/lib/getDefaultKeyBinding.js","./getVisibleSelectionRect":"node_modules/draft-js/lib/getVisibleSelectionRect.js","./convertFromHTMLToContentBlocks":"node_modules/draft-js/lib/convertFromHTMLToContentBlocks.js"}],"components/Editor/index.jsx":[function(require,module,exports) {
+},{"./AtomicBlockUtils":"node_modules/draft-js/lib/AtomicBlockUtils.js","./BlockMapBuilder":"node_modules/draft-js/lib/BlockMapBuilder.js","./CharacterMetadata":"node_modules/draft-js/lib/CharacterMetadata.js","./CompositeDraftDecorator":"node_modules/draft-js/lib/CompositeDraftDecorator.js","./ContentBlock":"node_modules/draft-js/lib/ContentBlock.js","./ContentState":"node_modules/draft-js/lib/ContentState.js","./DefaultDraftBlockRenderMap":"node_modules/draft-js/lib/DefaultDraftBlockRenderMap.js","./DefaultDraftInlineStyle":"node_modules/draft-js/lib/DefaultDraftInlineStyle.js","./DraftEditor.react":"node_modules/draft-js/lib/DraftEditor.react.js","./DraftEditorBlock.react":"node_modules/draft-js/lib/DraftEditorBlock.react.js","./DraftEntity":"node_modules/draft-js/lib/DraftEntity.js","./DraftModifier":"node_modules/draft-js/lib/DraftModifier.js","./DraftEntityInstance":"node_modules/draft-js/lib/DraftEntityInstance.js","./EditorState":"node_modules/draft-js/lib/EditorState.js","./KeyBindingUtil":"node_modules/draft-js/lib/KeyBindingUtil.js","./RawDraftContentState":"node_modules/draft-js/lib/RawDraftContentState.js","./RichTextEditorUtil":"node_modules/draft-js/lib/RichTextEditorUtil.js","./SelectionState":"node_modules/draft-js/lib/SelectionState.js","./convertFromDraftStateToRaw":"node_modules/draft-js/lib/convertFromDraftStateToRaw.js","./convertFromRawToDraftState":"node_modules/draft-js/lib/convertFromRawToDraftState.js","./generateRandomKey":"node_modules/draft-js/lib/generateRandomKey.js","./getDefaultKeyBinding":"node_modules/draft-js/lib/getDefaultKeyBinding.js","./getVisibleSelectionRect":"node_modules/draft-js/lib/getVisibleSelectionRect.js","./convertFromHTMLToContentBlocks":"node_modules/draft-js/lib/convertFromHTMLToContentBlocks.js"}],"components/ToolCell/index.jsx":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -52633,8 +52633,6 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 
 var _react = _interopRequireDefault(require("react"));
-
-var _draftJs = require("draft-js");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -52655,6 +52653,233 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+var StyleButton =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(StyleButton, _React$Component);
+
+  function StyleButton() {
+    var _this;
+
+    _classCallCheck(this, StyleButton);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(StyleButton).call(this));
+
+    _this.onToggle = function (e) {
+      e.preventDefault();
+
+      _this.props.onToggle(_this.props.style);
+    };
+
+    return _this;
+  }
+
+  _createClass(StyleButton, [{
+    key: "render",
+    value: function render() {
+      var className = "RichEditor-styleButton";
+
+      if (this.props.active) {
+        className += " RichEditor-activeButton";
+      }
+
+      return _react.default.createElement("span", {
+        className: className,
+        onMouseDown: this.onToggle
+      }, this.props.label);
+    }
+  }]);
+
+  return StyleButton;
+}(_react.default.Component);
+
+exports.default = StyleButton;
+},{"react":"node_modules/react/index.js"}],"components/ToolBarInline/index.jsx":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _draftJs = require("draft-js");
+
+var _ToolCell = _interopRequireDefault(require("../ToolCell"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+var ToolbarComponent =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(ToolbarComponent, _React$Component);
+
+  function ToolbarComponent(props) {
+    var _this;
+
+    _classCallCheck(this, ToolbarComponent);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(ToolbarComponent).call(this, props));
+    _this.state = {
+      inlineStyles: _this.props.inlineStyles || []
+    };
+    return _this;
+  }
+
+  _createClass(ToolbarComponent, [{
+    key: "render",
+    value: function render() {
+      var inlineStyles = this.state.inlineStyles;
+      return _react.default.createElement("div", null, inlineStyles && inlineStyles.length > 0 && inlineStyles.map(function (style, si) {
+        console.log("style", style);
+        return _react.default.createElement(_ToolCell.default, {
+          key: si,
+          label: style.label
+        });
+      }));
+    }
+  }]);
+
+  return ToolbarComponent;
+}(_react.default.Component);
+
+exports.default = ToolbarComponent;
+},{"react":"node_modules/react/index.js","draft-js":"node_modules/draft-js/lib/Draft.js","../ToolCell":"components/ToolCell/index.jsx"}],"components/Toolbar/index.jsx":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _draftJs = require("draft-js");
+
+var _ToolBarInline = _interopRequireDefault(require("../ToolBarInline"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+var ToolbarComponent =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(ToolbarComponent, _React$Component);
+
+  function ToolbarComponent(props) {
+    var _this;
+
+    _classCallCheck(this, ToolbarComponent);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(ToolbarComponent).call(this, props));
+    _this.state = {};
+    return _this;
+  }
+
+  _createClass(ToolbarComponent, [{
+    key: "render",
+    value: function render() {
+      return _react.default.createElement("div", null, _react.default.createElement(_ToolBarInline.default, {
+        inlineStyles: this.props.inlineStyles
+      }));
+    }
+  }]);
+
+  return ToolbarComponent;
+}(_react.default.Component);
+
+exports.default = ToolbarComponent;
+},{"react":"node_modules/react/index.js","draft-js":"node_modules/draft-js/lib/Draft.js","../ToolBarInline":"components/ToolBarInline/index.jsx"}],"components/Editor/index.jsx":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _draftJs = require("draft-js");
+
+var _Toolbar = _interopRequireDefault(require("../Toolbar"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+var INLINE_STYLES = [{
+  label: "Bold",
+  style: "BOLD"
+}, {
+  label: "Italic",
+  style: "ITALIC"
+}, {
+  label: "Underline",
+  style: "UNDERLINE"
+}, {
+  label: "Monospace",
+  style: "CODE"
+}, {
+  label: "test",
+  style: "STRIKETHROUGH"
+}];
 
 var EditorComponent =
 /*#__PURE__*/
@@ -52683,10 +52908,13 @@ function (_React$Component) {
   _createClass(EditorComponent, [{
     key: "render",
     value: function render() {
-      return _react.default.createElement(_draftJs.Editor, {
+      return _react.default.createElement(_react.Fragment, null, _react.default.createElement(_Toolbar.default, {
+        inlineStyles: INLINE_STYLES
+      }), _react.default.createElement(_draftJs.Editor, {
+        placeholder: "Please Text Here",
         editorState: this.state.editorState,
         onChange: this.onChange
-      });
+      }));
     }
   }]);
 
@@ -52694,7 +52922,7 @@ function (_React$Component) {
 }(_react.default.Component);
 
 exports.default = EditorComponent;
-},{"react":"node_modules/react/index.js","draft-js":"node_modules/draft-js/lib/Draft.js"}],"indx.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","draft-js":"node_modules/draft-js/lib/Draft.js","../Toolbar":"components/Toolbar/index.jsx"}],"indx.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
@@ -52736,7 +52964,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52393" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56296" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
