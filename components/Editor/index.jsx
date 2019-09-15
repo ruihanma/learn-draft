@@ -28,6 +28,15 @@ const BLOCK_TYPES = [
   { label: "Code Block", style: "code-block" }
 ];
 
+const styleMap = {
+  CODE: {
+    backgroundColor: "rgba(0, 0, 0, 0.3)",
+    fontFamily: '"Inconsolata", "Menlo", "Consolas", monospace',
+    fontSize: 16,
+    padding: 2
+  }
+};
+
 export default class EditorComponent extends React.Component {
   constructor(props) {
     super(props);
@@ -55,6 +64,9 @@ export default class EditorComponent extends React.Component {
             placeholder="Please Text Here"
             editorState={this.state.editorState}
             onChange={this.onChange}
+            ref="editor"
+            spellCheck={true}
+            customStyleMap={styleMap}
           />
         </div>
       </Fragment>

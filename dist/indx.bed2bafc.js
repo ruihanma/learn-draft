@@ -67670,6 +67670,14 @@ var BLOCK_TYPES = [{
   label: "Code Block",
   style: "code-block"
 }];
+var styleMap = {
+  CODE: {
+    backgroundColor: "rgba(0, 0, 0, 0.3)",
+    fontFamily: '"Inconsolata", "Menlo", "Consolas", monospace',
+    fontSize: 16,
+    padding: 2
+  }
+};
 
 var EditorComponent =
 /*#__PURE__*/
@@ -67715,7 +67723,10 @@ function (_React$Component) {
       }, _react.default.createElement(_draftJs.Editor, {
         placeholder: "Please Text Here",
         editorState: this.state.editorState,
-        onChange: this.onChange
+        onChange: this.onChange,
+        ref: "editor",
+        spellCheck: true,
+        customStyleMap: styleMap
       })));
     }
   }, {
