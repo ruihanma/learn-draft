@@ -15,7 +15,7 @@ export default class ToolbarComponent extends React.Component {
     const { inlineStyles } = this.state;
     const { onToggle } = this.props;
     return (
-      <div>
+      <div className="mb-3">
         {inlineStyles &&
           inlineStyles.length > 0 &&
           inlineStyles.map((cell, si) => {

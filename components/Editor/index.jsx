@@ -2,6 +2,8 @@ import React, { Fragment } from "react";
 import { Editor, EditorState, RichUtils } from "draft-js";
 
 import Toolbar from "../Toolbar";
+// Style
+import "../../styles/main";
 
 // 行内样式组
 const INLINE_STYLES = [

@@ -14,7 +14,7 @@ export default class ToolbarComponent extends React.Component {
     const { inlineStyles, onInlineToggle } = this.props;
     const { blockStyles, onBlockToggle } = this.props;
     return (
-      <div>
+      <div className="p-3">
         <ToolBarInline onToggle={onInlineToggle} inlineStyles={inlineStyles} />
         <ToolBarBlock onToggle={onBlockToggle} blockStyles={blockStyles} />
       </div>

@@ -6,6 +6,13 @@
     "plugins": [
         [
             "transform-class-properties"
-        ]
+        ],
+        [
+            "import",
+            {
+              "libraryName": "antd",
+              "style": "css"
+            }
+          ]
     ]
 }

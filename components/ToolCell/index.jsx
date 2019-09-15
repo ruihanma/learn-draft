@@ -1,4 +1,5 @@
 import React from "react";
+import { Button } from "antd";
 
 export default class StyleButton extends React.Component {
   constructor() {
@@ -10,14 +11,14 @@ export default class StyleButton extends React.Component {
   }
 
   render() {
-    let className = "RichEditor-styleButton";
+    let className = "RichEditor-styleButton mr-2";
     if (this.props.active) {
       className += " RichEditor-activeButton";
     }
     return (
-      <span className={className} onMouseDown={this.onToggle}>
+      <Button className={className} onMouseDown={this.onToggle}>
         {this.props.label}
-      </span>
+      </Button>
     );
   }
 }
