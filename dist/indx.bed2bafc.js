@@ -67700,12 +67700,50 @@ function (_React$Component) {
     _this.state = {
       editorState: _draftJs.EditorState.createEmpty()
     };
+
+    _this.focus = function () {
+      return _this.refs.editor.focus();
+    };
+
+    _this.handleKeyCommand = _this._handleKeyCommand.bind(_assertThisInitialized(_this));
+    _this.mapKeyToEditorCommand = _this._mapKeyToEditorCommand.bind(_assertThisInitialized(_this));
     _this.toggleBlockType = _this._toggleBlockType.bind(_assertThisInitialized(_this));
     _this.toggleInlineStyle = _this._toggleInlineStyle.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(EditorComponent, [{
+    key: "_handleKeyCommand",
+    value: function _handleKeyCommand(command, editorState) {
+      var newState = _draftJs.RichUtils.handleKeyCommand(editorState, command);
+
+      if (newState) {
+        this.onChange(newState);
+        return true;
+      }
+
+      return false;
+    }
+  }, {
+    key: "_mapKeyToEditorCommand",
+    value: function _mapKeyToEditorCommand(e) {
+      if (e.keyCode === 9
+      /* TAB */
+      ) {
+          var newEditorState = _draftJs.RichUtils.onTab(e, this.state.editorState, 4
+          /* maxDepth */
+          );
+
+          if (newEditorState !== this.state.editorState) {
+            this.onChange(newEditorState);
+          }
+
+          return;
+        }
+
+      return getDefaultKeyBinding(e);
+    }
+  }, {
     key: "render",
     value: function render() {
       var editorState = this.state.editorState;
@@ -67788,7 +67826,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54097" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56051" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

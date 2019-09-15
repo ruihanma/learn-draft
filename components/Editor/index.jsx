@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { Editor, EditorState, RichUtils } from "draft-js";
+import { Editor, EditorState, RichUtils, AtomicBlockUtils } from "draft-js";
 
 import Toolbar from "../Toolbar";
 // Style
@@ -43,9 +43,34 @@ export default class EditorComponent extends React.Component {
     this.state = {
       editorState: EditorState.createEmpty()
     };
-
+    this.focus = () => this.refs.editor.focus();
+    this.handleKeyCommand = this._handleKeyCommand.bind(this);
+    this.mapKeyToEditorCommand = this._mapKeyToEditorCommand.bind(this);
     this.toggleBlockType = this._toggleBlockType.bind(this);
     this.toggleInlineStyle = this._toggleInlineStyle.bind(this);
+  }
+
+  _handleKeyCommand(command, editorState) {
+    const newState = RichUtils.handleKeyCommand(editorState, command);
+    if (newState) {
+      this.onChange(newState);
+      return true;
+    }
+    return false;
+  }
+  _mapKeyToEditorCommand(e) {
+    if (e.keyCode === 9 /* TAB */) {
+      const newEditorState = RichUtils.onTab(
+        e,
+        this.state.editorState,
+        4 /* maxDepth */
+      );
+      if (newEditorState !== this.state.editorState) {
+        this.onChange(newEditorState);
+      }
+      return;
+    }
+    return getDefaultKeyBinding(e);
   }
 
   render() {
