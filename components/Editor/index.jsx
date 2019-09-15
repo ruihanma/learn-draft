@@ -11,6 +11,19 @@ const INLINE_STYLES = [
   { label: "test", style: "STRIKETHROUGH" }
 ];
 
+const BLOCK_TYPES = [
+  { label: "H1", style: "header-one" },
+  { label: "H2", style: "header-two" },
+  { label: "H3", style: "header-three" },
+  { label: "H4", style: "header-four" },
+  { label: "H5", style: "header-five" },
+  { label: "H6", style: "header-six" },
+  { label: "Blockquote", style: "blockquote" },
+  { label: "UL", style: "unordered-list-item" },
+  { label: "OL", style: "ordered-list-item" },
+  { label: "Code Block", style: "code-block" }
+];
+
 export default class EditorComponent extends React.Component {
   constructor(props) {
     super(props);
@@ -22,7 +35,7 @@ export default class EditorComponent extends React.Component {
   render() {
     return (
       <Fragment>
-        <Toolbar inlineStyles={INLINE_STYLES} />
+        <Toolbar inlineStyles={INLINE_STYLES} blockStyles={BLOCK_TYPES} />
         <Editor
           placeholder="Please Text Here"
           editorState={this.state.editorState}

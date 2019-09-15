@@ -7,17 +7,17 @@ export default class ToolbarComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      inlineStyles: this.props.inlineStyles || []
+      blockStyles: this.props.blockStyles || []
     };
   }
 
   render() {
-    const { inlineStyles } = this.state;
+    const { blockStyles } = this.state;
     return (
       <div>
-        {inlineStyles &&
-          inlineStyles.length > 0 &&
-          inlineStyles.map((style, si) => {
+        {blockStyles &&
+          blockStyles.length > 0 &&
+          blockStyles.map((style, si) => {
             return <ToolCell key={si} label={style.label}></ToolCell>;
           })}
       </div>
